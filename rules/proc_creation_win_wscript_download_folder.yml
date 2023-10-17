@@ -1,0 +1,19 @@
+title: Execution of Windows Scripting Host with File in Downloads Folder
+id: ad41edbd-5a0f-47ae-8f60-a0222866c1c4
+status: stable
+description: Detects execution of script files from download folder. Often an indicator for malicious droppers.
+author: Thomas Patzke
+date: 2023/09/11
+tags:
+    - attack.t1059
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        ImageFile|endswith: "\\wscript.exe"
+        CommandLine|contains: "\\Downloads\\"
+    condition: selection
+falsepositives:
+     - Unknown
+level: high

@@ -1,0 +1,18 @@
+title: Windows calculator spawns process
+id: 34381c6b-9e65-40f8-9270-9e733f8045fa
+status: stable
+description: Detects if the Windows calculator spawns a process. Usually a strong indicator that something injected into it.
+author: Thomas Patzke
+date: 2023/09/25
+tags:
+    - attack.t1055
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        ParentImage|endswith: "\\Windows\\System32\\calc.exe"
+    condition: selection
+falsepositives:
+     - Unknown
+level: high

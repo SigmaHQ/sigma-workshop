@@ -1,0 +1,20 @@
+title: Service host spawned by unusual process
+id: 8f95b6b7-7f35-4f0d-9c6c-7c69d13a0cca
+status: experimental
+description: Detects Windows service host executions spawned by unusual processes.
+author: Thomas Patzke
+date: 2023/09/26
+tags:
+    - attack.t1055
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: \\svchost.exe
+    legitimate:
+        ParentImage|endswith: \\services.exe
+    condition: selection and not legitimate
+falsepositives:
+     - Crashes could possibly different produce process relationships in rare cases.
+level: high

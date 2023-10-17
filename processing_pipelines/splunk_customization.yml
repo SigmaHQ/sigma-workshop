@@ -1,0 +1,7 @@
+name: Custom Splunk environment
+priority: 30
+transformations:
+- id: index_condition
+  type: add_condition
+  conditions:
+    index: windows
